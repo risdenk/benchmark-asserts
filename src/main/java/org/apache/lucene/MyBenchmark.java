@@ -56,7 +56,7 @@ public class MyBenchmark {
   public long testNoAssert(MyState state) {
     long sum = 0L;
     for (long i = 0; i < state.max_value; i++) {
-      sum = doAdd(sum);
+      sum += 1;
     }
     return sum;
   }
@@ -65,8 +65,8 @@ public class MyBenchmark {
   public long testSimpleAssert(MyState state) {
     long sum = 0L;
     for (long i = 0; i < state.max_value; i++) {
-      doSimpleAssert(state, i);
-      sum = doAdd(sum);
+      assert i < state.assert_value;
+      sum += 1;
     }
     return sum;
   }
@@ -75,8 +75,8 @@ public class MyBenchmark {
   public long testSimpleStringMessageAssert(MyState state) {
     long sum = 0L;
     for (long i = 0; i < state.max_value; i++) {
-      doSimpleStringMessageAssert(state, i);
-      sum = doAdd(sum);
+      assert i < state.assert_value : "hi";
+      sum += 1;
     }
     return sum;
   }
@@ -85,25 +85,9 @@ public class MyBenchmark {
   public long testLongStringMessageAssert(MyState state) {
     long sum = 0L;
     for (long i = 0; i < state.max_value; i++) {
-      doLongStringMessageAssert(state, i);
-      sum = doAdd(sum);
+      assert i < state.assert_value : "Lorem ipsum odor amet, consectetuer adipiscing elit. Taciti lacinia dictum natoque neque pretium ornare. Congue natoque fermentum penatibus pellentesque dignissim erat ultrices litora habitant. Diam mollis justo aptent ut velit. Mauris gravida felis convallis diam faucibus pretium scelerisque tellus. Cursus rutrum platea habitasse cubilia est per. Nullam pretium arcu tempor, neque curabitur eu. Netus dignissim et primis lacinia ad eleifend. Mi interdum molestie facilisis vel torquent per fermentum sagittis. Pulvinar convallis arcu est in suspendisse duis nulla curae. Laoreet efficitur adipiscing vulputate elit platea tempus sed himenaeos consectetur. Sed fames mus et litora ac lacus urna eros. Eleifend blandit id posuere orci interdum. Sollicitudin taciti dolor orci dictumst vivamus facilisis. Consectetur dui auctor nulla himenaeos sagittis morbi nam lacus condimentum. Pretium sociosqu consequat lorem hac, mus potenti dapibus diam. Habitant fusce sodales tempus dapibus nec habitant vel. Elementum iaculis curae gravida aliquet blandit nullam suscipit proin. Litora senectus at enim feugiat, fusce lacus hac. Massa cubilia cubilia habitasse ut volutpat, cubilia tempor. Pharetra rhoncus et facilisis ultrices tempus nibh. Mus habitant faucibus ad egestas egestas nisl amet potenti dolor. Ullamcorper justo fusce ante integer aliquam fames. Finibus aenean ante augue blandit praesent. Quis lacinia porttitor massa lectus magna vivamus sed primis. Magna natoque pretium malesuada a congue justo. Consectetur quisque semper phasellus consequat inceptos commodo. Sociosqu ullamcorper id ridiculus cras eros. Eros fringilla ornare habitant scelerisque dictum class mus porta. Congue neque tristique odio in nostra, mi vel. Morbi vitae id fermentum curabitur eget ipsum ante. Nisi pretium orci vehicula mus ac lectus integer. Fringilla facilisis conubia nunc porttitor sapien, mauris eget. Inceptos ex orci quisque; vivamus cursus at. Laoreet blandit est, montes nascetur eu lobortis mattis. Morbi conubia etiam condimentum enim adipiscing ad. Luctus porta feugiat conubia pellentesque nulla semper dis vel. Libero facilisi vestibulum senectus sed gravida ligula montes condimentum. the value of i is " + i;
+      sum += 1;
     }
     return sum;
-  }
-
-  private long doAdd(long sum) {
-    return sum + 1L;
-  }
-
-  private void doSimpleAssert(MyState state, long i) {
-    assert i < state.assert_value;
-  }
-
-  private void doSimpleStringMessageAssert(MyState state, long i) {
-    assert i < state.assert_value : "hi";
-  }
-
-  private void doLongStringMessageAssert(MyState state, long i) {
-    assert i < state.assert_value : "Lorem ipsum odor amet, consectetuer adipiscing elit. Taciti lacinia dictum natoque neque pretium ornare. Congue natoque fermentum penatibus pellentesque dignissim erat ultrices litora habitant. Diam mollis justo aptent ut velit. Mauris gravida felis convallis diam faucibus pretium scelerisque tellus. Cursus rutrum platea habitasse cubilia est per. Nullam pretium arcu tempor, neque curabitur eu. Netus dignissim et primis lacinia ad eleifend. Mi interdum molestie facilisis vel torquent per fermentum sagittis. Pulvinar convallis arcu est in suspendisse duis nulla curae. Laoreet efficitur adipiscing vulputate elit platea tempus sed himenaeos consectetur. Sed fames mus et litora ac lacus urna eros. Eleifend blandit id posuere orci interdum. Sollicitudin taciti dolor orci dictumst vivamus facilisis. Consectetur dui auctor nulla himenaeos sagittis morbi nam lacus condimentum. Pretium sociosqu consequat lorem hac, mus potenti dapibus diam. Habitant fusce sodales tempus dapibus nec habitant vel. Elementum iaculis curae gravida aliquet blandit nullam suscipit proin. Litora senectus at enim feugiat, fusce lacus hac. Massa cubilia cubilia habitasse ut volutpat, cubilia tempor. Pharetra rhoncus et facilisis ultrices tempus nibh. Mus habitant faucibus ad egestas egestas nisl amet potenti dolor. Ullamcorper justo fusce ante integer aliquam fames. Finibus aenean ante augue blandit praesent. Quis lacinia porttitor massa lectus magna vivamus sed primis. Magna natoque pretium malesuada a congue justo. Consectetur quisque semper phasellus consequat inceptos commodo. Sociosqu ullamcorper id ridiculus cras eros. Eros fringilla ornare habitant scelerisque dictum class mus porta. Congue neque tristique odio in nostra, mi vel. Morbi vitae id fermentum curabitur eget ipsum ante. Nisi pretium orci vehicula mus ac lectus integer. Fringilla facilisis conubia nunc porttitor sapien, mauris eget. Inceptos ex orci quisque; vivamus cursus at. Laoreet blandit est, montes nascetur eu lobortis mattis. Morbi conubia etiam condimentum enim adipiscing ad. Luctus porta feugiat conubia pellentesque nulla semper dis vel. Libero facilisi vestibulum senectus sed gravida ligula montes condimentum. the value of i is " + i;
   }
 }
